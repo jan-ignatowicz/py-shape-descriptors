@@ -1,7 +1,8 @@
-numpy==1.14.5
-opencv-python==3.4.1.15
-opencv-contrib-python==3.4.2.17
-matplotlib==2.2.2
-scikit-image==0.14
-#mahotas==1.4.4
-pandas==0.23.4
+numpy==1.20.0
+opencv-python==4.5.1.48
+opencv-contrib-python==4.5.1.48
+matplotlib==3.3.4
+scikit-image==0.18.1
+mahotas==1.4.11
+pandas==1.2.1
+Pillow~=8.1.0

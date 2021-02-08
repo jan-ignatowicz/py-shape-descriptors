@@ -37,6 +37,7 @@ def moments(image, kind='all'):
         moments['m02'] = _sum(y ** 2 * image)
         moments['m12'] = _sum(x * y ** 2 * image)
         moments['m21'] = _sum(x ** 2 * y * image)
+        moments['m22'] = _sum(x ** 2 * y ** 2 * image)
         moments['m30'] = _sum(x ** 3 * image)
         moments['m03'] = _sum(y ** 3 * image)
 
@@ -50,6 +51,7 @@ def moments(image, kind='all'):
         moments['mu02'] = _sum((y - moments['mean_y']) ** 2 * image)  # variance
         moments['mu12'] = _sum((x - moments['mean_x']) * (y - moments['mean_y']) ** 2 * image)
         moments['mu21'] = _sum((x - moments['mean_x']) ** 2 * (y - moments['mean_y']) * image)
+        moments['mu22'] = _sum((x - moments['mean_x']) ** 2 * (y - moments['mean_y']) ** 2 * image)
         moments['mu30'] = _sum((x - moments['mean_x']) ** 3 * image)
         moments['mu03'] = _sum((y - moments['mean_y']) ** 3 * image)
 
@@ -119,17 +121,17 @@ def hu_moments(image):
         (m['nu30'] + m['nu12']) ** 2 + (m['nu21'] + m['nu03']) ** 2,  # I4
 
         (m['nu30'] - 3 * m['nu12']) * (m['nu30'] + m['nu12']) * (
-            (m['nu30'] + m['nu12']) ** 2 - 3 * (m['nu21'] + m['nu03']) ** 2)
+                (m['nu30'] + m['nu12']) ** 2 - 3 * (m['nu21'] + m['nu03']) ** 2)
         + (3 * m['nu21'] - m['nu03']) * (m['nu21'] + m['nu03']) * (
-            3 * (m['nu30'] + m['nu12']) ** 2 - (m['nu21'] + m['nu03']) ** 2),  # I5
+                3 * (m['nu30'] + m['nu12']) ** 2 - (m['nu21'] + m['nu03']) ** 2),  # I5
 
         (m['nu20'] - m['nu02']) * ((m['nu30'] + m['nu12']) ** 2 - (m['nu21'] + m['nu03']) ** 2)
         + 4 * m['nu11'] * (m['nu30'] + m['nu12']) * (m['nu21'] + m['nu03']),  # I6
 
         (3 * m['nu21'] - m['nu03']) * (m['nu30'] + m['nu12']) * (
-            (m['nu30'] + m['nu12']) ** 2 - 3 * (m['nu21'] + m['nu03']) ** 2)
+                (m['nu30'] + m['nu12']) ** 2 - 3 * (m['nu21'] + m['nu03']) ** 2)
         - (m['nu30'] - 3 * m['nu12']) * (m['nu21'] + m['nu03']) * (
-            3 * (m['nu30'] + m['nu12']) ** 2 - (m['nu21'] + m['nu03']) ** 2),  # I7
+                3 * (m['nu30'] + m['nu12']) ** 2 - (m['nu21'] + m['nu03']) ** 2),  # I7
         m['nu11'] * ((m['nu30'] + m['nu12']) ** 2 - (m['nu03'] + m['nu21']) ** 2)
         - (m['nu20'] - m['nu02']) * (m['nu30'] + m['nu12']) * (m['nu03'] + m['nu21'])  # I8
 
